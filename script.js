@@ -62,13 +62,11 @@ function filterElement () {
  * @param {Array} classes 
  * @returns {Array}
  */
-function verifierActive (classes) {
+function activeClassVerifier (classes) {
     const active = classes.filter((word) => word === 'active')
     if (active.toString() !== "") {
-        classes.pop()
-        return classes
+        classes.splice(classes.indexOf('active'), 1)
     } else {
         classes.push('active')
-        return classes
     }
 }
