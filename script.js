@@ -42,6 +42,9 @@ function removeElement () {
 
 function filterElement () {
     const buttons = document.querySelectorAll('.btn-group .btn')
+    const list = document.querySelectorAll('.list-group li')
+    const checkbox = document.querySelectorAll('.form-check-input')
+    
 
     /**
      * document.querySelectorAll('.btn') sélectionne tous les boutons ayant la classe btn.
@@ -53,6 +56,29 @@ function filterElement () {
             buttons.forEach(btn => btn.classList.remove('active'))
 
             this.classList.add('active')
+
+            if (button.innerText === 'A faire') {
+                checkbox.forEach(item => {
+                    item.parentNode.style.visibility = 'visible'
+
+                    if (item.checked) {
+                        item.parentNode.style.visibility = 'collapse'
+                    }
+
+                })
+            } else if (button.innerText === 'Faites') {
+                checkbox.forEach(item => {
+                    item.parentNode.style.visibility = 'visible'
+
+                    if (!item.checked) {
+                        item.parentNode.style.visibility = 'collapse'
+                    }
+                })
+            } else {
+                checkbox.forEach(item => {
+                    item.parentNode.style.visibility = 'visible'
+                })
+            }
         })
     })
 }
