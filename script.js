@@ -42,7 +42,6 @@ function removeElement () {
 
 function filterElement () {
     const buttons = document.querySelectorAll('.btn-group .btn')
-    const list = document.querySelectorAll('.list-group li')
     const checkbox = document.querySelectorAll('.form-check-input')
     
 
