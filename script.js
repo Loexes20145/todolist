@@ -31,13 +31,12 @@ function removeElement () {
     const list = document.querySelector('.list-group')
     const trashIcon = document.querySelectorAll(`.btn-danger`)
     
-    for (let elt of trashIcon) {
-        elt.addEventListener('click', (event) => {
+    trashIcon.forEach(trash => {
+        trash.addEventListener('click', (event) => {
             console.log(event.target.parentNode)
             list.removeChild(event.currentTarget.parentNode)
         })
-    }
-    
+    })
 }
 
 
