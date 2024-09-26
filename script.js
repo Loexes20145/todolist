@@ -24,6 +24,11 @@ function addElement () {
 
 addElement()
 
-function removeElement () {}
+function removeElement () {
+    const list = document.querySelector('.list-group')
+    const listItems = document.querySelectorAll('.list-group li')
+
+    for (let item of listItems) {}
+}
 
 function filterElement () {}
