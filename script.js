@@ -1,3 +1,9 @@
+addElement()
+
+removeElement()
+
+filterElement()
+
 function addElement () {
     const form = document.querySelector('form')
     const input = document.querySelector('.form-control')
@@ -18,11 +24,8 @@ function addElement () {
         </label>
         `
         list.appendChild(listItem)
-
     })
 }
-
-addElement()
 
 function removeElement () {
     const list = document.querySelector('.list-group')
@@ -37,6 +40,35 @@ function removeElement () {
     
 }
 
-removeElement()
 
-function filterElement () {}
+function filterElement () {
+    const filterBtn = document.querySelectorAll('.btn-group .btn')
+
+    for (let btn of filterBtn) {
+        console.log(btn)
+        const classes = btn.classList
+        console.log(classes)
+        btn.addEventListener('click', (event) => {
+            console.log(event.currentTarget)
+            event.currentTarget.classList.toggle('active')
+            console.log(classes)
+        })
+    }
+    
+}
+
+/**
+ * Fonction qui vérifie si le tableau passé en paramètre contient l'élément "active". Si oui, le retire; si non l'ajoute
+ * @param {Array} classes 
+ * @returns {Array}
+ */
+function verifierActive (classes) {
+    const active = classes.filter((word) => word === 'active')
+    if (active.toString() !== "") {
+        classes.pop()
+        return classes
+    } else {
+        classes.push('active')
+        return classes
+    }
+}
