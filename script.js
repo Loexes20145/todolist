@@ -42,31 +42,18 @@ function removeElement () {
 
 
 function filterElement () {
-    const filterBtn = document.querySelectorAll('.btn-group .btn')
+    const buttons = document.querySelectorAll('.btn-group .btn')
 
-    for (let btn of filterBtn) {
-        console.log(btn)
-        const classes = btn.classList
-        console.log(classes)
-        btn.addEventListener('click', (event) => {
-            console.log(event.currentTarget)
-            event.currentTarget.classList.toggle('active')
-            console.log(classes)
+    /**
+     * document.querySelectorAll('.btn') sélectionne tous les boutons ayant la classe btn.
+     * forEach() parcourt chaque bouton et ajoute un gestionnaire d'événements click à chaque bouton.
+     * Lorsque tu cliques sur un bouton, la fonction supprime la classe active de tous les boutons, puis ajoute cette classe au bouton cliqué (grâce à this qui fait référence au bouton actuel).
+     */
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            buttons.forEach(btn => btn.classList.remove('active'))
+
+            this.classList.add('active')
         })
-    }
-    
-}
-
-/**
- * Fonction qui vérifie si le tableau passé en paramètre contient l'élément "active". Si oui, le retire; si non l'ajoute
- * @param {Array} classes 
- * @returns {Array}
- */
-function activeClassVerifier (classes) {
-    const active = classes.filter((word) => word === 'active')
-    if (active.toString() !== "") {
-        classes.splice(classes.indexOf('active'), 1)
-    } else {
-        classes.push('active')
-    }
+    })
 }
