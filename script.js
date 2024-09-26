@@ -1,7 +1,7 @@
 function addElement () {
     const form = document.querySelector('form')
     const input = document.querySelector('.form-control')
-    const ul = document.querySelector('ul')
+    const ul = document.querySelector('.list-group')
     
     form.addEventListener('submit', (event) => {
         event.preventDefault()
