@@ -10,6 +10,14 @@ function addElement () {
         for (let elt of liClass) {
             listItem.classList.add(elt)
         }
+        listItem.innerHTML = `
+        <input class="form-check-input" type="checkbox" id="todo-1">
+        <label class="ms-2 form-check-label" for="todo-1">${input.value}</label>
+        <label class="ms-auto btn btn-danger btn-sm">
+        <i class="bi-trash"></i>
+        </label>
+        `
+        ul.appendChild(listItem)
 
     })
 }
