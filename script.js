@@ -1,7 +1,7 @@
 function addElement () {
     const form = document.querySelector('form')
     const input = document.querySelector('.form-control')
-    const ul = document.querySelector('.list-group')
+    const list = document.querySelector('.list-group')
     
     form.addEventListener('submit', (event) => {
         event.preventDefault()
@@ -17,7 +17,7 @@ function addElement () {
         <i class="bi-trash"></i>
         </label>
         `
-        ul.appendChild(listItem)
+        list.appendChild(listItem)
 
     })
 }
