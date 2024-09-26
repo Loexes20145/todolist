@@ -26,12 +26,17 @@ addElement()
 
 function removeElement () {
     const list = document.querySelector('.list-group')
-    const listItems = document.querySelectorAll('.list-group li')
-
-    for (let item of listItems) {
-        const trashIcon = document.querySelector('bi-trash')
-        trashIcon.addEventListener('click', (event) => {})
+    const trashIcon = document.querySelectorAll(`.btn-danger`)
+    
+    for (let elt of trashIcon) {
+        elt.addEventListener('click', (event) => {
+            console.log(event.target.parentNode)
+            list.removeChild(event.currentTarget.parentNode)
+        })
     }
+    
 }
+
+removeElement()
 
 function filterElement () {}
