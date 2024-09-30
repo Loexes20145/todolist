@@ -61,6 +61,16 @@ export class TodoList {
         element.querySelectorAll('.btn-group button').forEach(button => {
             button.addEventListener('click', e => this.#toggleFilter(e))
         })
+
+        this.#listElement.addEventListener('delete', ({detail: todo}) => {
+            this.#todos = this.#todos.filter(t => t !== todo)
+            console.log(this.#todos)
+        })
+
+        this.#listElement.addEventListener('toggle', ({detail: todo}) => {
+            todo.completed = !todo.completed
+            console.log(this.#todos)
+        })
     }
 
     /**
@@ -109,9 +119,12 @@ export class TodoList {
 
 class TodoListItem {
     #element
+    #todo
 
     /** @type {Todo} */
     constructor (todo) {
+        this.#todo = todo
+
         const id = `todo-${todo.id}`
         const li = cloneTemplate('todolist-item').firstElementChild()
         this.#element = li
@@ -132,6 +145,9 @@ class TodoListItem {
         button.addEventListener('click', e => this.remove(e))
         checkbox.addEventListener('change', e => this.toggle(e.currentTarget))
 
+        this.#element.addEventListener('delete', e => {
+            console.log(e)
+        })
     }
 
     /**
@@ -148,6 +164,13 @@ class TodoListItem {
      */
     remove (e) {
         e.preventDefault()
+        this.#element.dispatchEvent(
+            new CustomEvent('delete', {
+                detail: this.#todo,
+                bubbles: true,
+                cancelable: true
+            })
+        )
         this.#element.remove()
     }
 
@@ -162,5 +185,10 @@ class TodoListItem {
         } else {
             this.#element.classList.remove('is-completed')
         }
+        const event = new CustomEvent('toggle', {
+            detail: this.#todo,
+            bubbles: true
+        })
+        this.#element.dispatchEvent(event)
     }
 }
